@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morro's Vapos — Control de ventas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="login" class="screen">
+    <div class="auth-card">
+      <div class="brand-mark">MV</div>
+      <h1>Morro's Vapos</h1>
+      <p>Control de ventas</p>
+      <input id="email" type="email" placeholder="Correo">
+      <input id="password" type="password" placeholder="Contraseña">
+      <button id="loginBtn">Iniciar sesión</button>
+      <p id="authMsg" class="msg"></p>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
+    <header class="topbar">
+      <div>
+        <h1>Morro's Vapos</h1>
+        <span id="monthLabel"></span>
+      </div>
+      <button id="logoutBtn" class="secondary">Cerrar sesión</button>
+    </header>
+
+    <main class="container">
+      <section class="stats">
+        <div class="stat"><span>Ventas</span><strong id="totalSales">$0</strong></div>
+        <div class="stat"><span>Para pedido</span><strong id="totalCost">$0</strong></div>
+        <div class="stat"><span>Ganancia</span><strong id="totalProfit">$0</strong></div>
+        <div class="stat"><span>Unidades</span><strong id="totalUnits">0</strong></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Registrar ventas</h2>
+            <p>Pega las ventas tal como las escribes normalmente.</p>
+          </div>
+        </div>
+
+        <div class="seller-grid">
+          <div class="seller-box">
+            <h3>Juan</h3>
+            <textarea id="juanInput" placeholder="1 humo azul 50k&#10;1 lost 20k&#10;1 desth 25k"></textarea>
+            <button class="process" data-seller="Juan">Procesar Juan</button>
+          </div>
+
+          <div class="seller-box">
+            <h3>Morro</h3>
+            <textarea id="morroInput" placeholder="1 lost 20k&#10;2 nicky 30k"></textarea>
+            <button class="process" data-seller="Morro">Procesar Morro</button>
+          </div>
+        </div>
+
+        <h3 class="subheading">Vitrinas</h3>
+        <div id="vitrinaGrid" class="vitrina-grid"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Resumen del mes</h2>
+            <p>La ganancia total se reparte 50% Juan y 50% Morro.</p>
+          </div>
+        </div>
+        <div id="summary" class="summary"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Productos</h2>
+            <p>Agrega productos, costos, alias y precios de vitrinas.</p>
+          </div>
+          <button id="addProductBtn">Agregar producto</button>
+        </div>
+        <div id="productsTable" class="table-wrap"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Vitrinas</h2>
+            <p>Puedes agregar nuevas vitrinas sin tocar el código.</p>
+          </div>
+          <button id="addVitrinaBtn">Agregar vitrina</button>
+        </div>
+        <div id="vitrinasTable" class="table-wrap"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <div>
+            <h2>Historial mensual</h2>
+            <p>Las ventas quedan guardadas en la nube.</p>
+          </div>
+        </div>
+        <div id="historyTable" class="table-wrap"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="section-head">
+        <h2 id="modalTitle">Agregar</h2>
+        <button id="closeModal" class="secondary">×</button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
