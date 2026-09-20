@@ -9,12 +9,13 @@ import { getFirestore, collection, addDoc, doc, setDoc, deleteDoc, onSnapshot, q
   4) Replace the firebaseConfig below with your project's Web App config.
 */
 const firebaseConfig = {
-  apiKey: "REEMPLAZAR",
-  authDomain: "REEMPLAZAR",
-  projectId: "REEMPLAZAR",
-  storageBucket: "REEMPLAZAR",
-  messagingSenderId: "REEMPLAZAR",
-  appId: "REEMPLAZAR"
+  apiKey: "AIzaSyA3UJW7gBytxeEAYpOECnK0F6PZWxC9p0U",
+  authDomain: "morro-vapos.firebaseapp.com",
+  projectId: "morro-vapos",
+  storageBucket: "morro-vapos.firebasestorage.app",
+  messagingSenderId: "752827827733",
+  appId: "1:752827827733:web:0dcb0e971d2f198c1ab01c",
+  measurementId: "G-J4FH08PZSY"
 };
 
 const firebaseReady = !Object.values(firebaseConfig).some(v => v === "REEMPLAZAR");
