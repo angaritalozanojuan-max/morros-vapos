@@ -144,7 +144,28 @@ document.querySelectorAll(".process").forEach(b=>b.onclick=()=>processSales($(b.
 $("logoutBtn").onclick=()=>signOut(auth);
 $("loginBtn").onclick=async()=>{
   if(!firebaseReady){$("authMsg").textContent="Firebase todavía no está conectado.";return}
-  try{await signInWithEmailAndPassword(auth,$("email").value,$("password").value)}catch(e){$("authMsg").textContent="Correo o contraseña incorrectos."}
+  const email=$("email").value.trim();
+  const password=$("password").value;
+  if(!email || !password){$("authMsg").textContent="Escribe el correo y la contraseña.";return}
+  try{
+    $("authMsg").textContent="Iniciando sesión...";
+    await signInWithEmailAndPassword(auth,email,password);
+  }catch(e){
+    console.error("Firebase Auth:",e);
+    const code=e?.code||"sin-codigo";
+    const messages={
+      "auth/invalid-credential":"Las credenciales no son válidas. Verifica el correo y la contraseña.",
+      "auth/wrong-password":"La contraseña no coincide con ese usuario.",
+      "auth/user-not-found":"Ese correo no existe en Firebase Authentication.",
+      "auth/user-disabled":"Ese usuario está deshabilitado en Firebase.",
+      "auth/invalid-email":"El correo no tiene un formato válido.",
+      "auth/unauthorized-domain":"El dominio de GitHub Pages no está autorizado en Firebase.",
+      "auth/invalid-api-key":"La API Key de Firebase no es válida.",
+      "auth/network-request-failed":"No se pudo conectar con Firebase. Revisa tu conexión.",
+      "auth/too-many-requests":"Firebase bloqueó temporalmente los intentos. Espera unos minutos."
+    };
+    $("authMsg").textContent=`${messages[code]||"Error de Firebase al iniciar sesión."} (${code})`;
+  }
 };
 $("addVitrinaBtn").onclick=()=>{
   const name=prompt("Nombre de la nueva vitrina:");
